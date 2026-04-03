@@ -23,10 +23,11 @@ jobs:
       # คำสั่งโหลด Library ที่จำเป็นทั้งหมดมาลงเครื่อง Build
       run: nuget restore "AIMBOT AI SAFE.sln"
 
-    - name: Build Solution (Release x64)
-      # สั่ง Build ผ่านไฟล์ .sln ตามคอนฟิกที่คุณส่งมา
+    - name: Build Solution (Force 64-bit)
+      # ใช้ "Any CPU" เหมือนเดิมแต่สั่งให้ห้ามใช้ 32-bit (Prefer32Bit=false)
       run: |
-        msbuild "AIMBOT AI SAFE.sln" /p:Configuration=Release /p:Platform="x64" /p:OutputPath=../build_output/
+        msbuild "AIMBOT AI SAFE.sln" /p:Configuration=Release /p:Platform="Any CPU" /p:Prefer32Bit=false /p:OutputPath=../build_output/
+
 
     - name: Upload Compiled File (Artifact)
       uses: actions/upload-artifact@v4
