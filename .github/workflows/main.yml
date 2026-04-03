@@ -1,0 +1,36 @@
+name: Build AIMBOT Project
+
+on:
+  push:
+    branches: [ "main" ] # จะ Build อัตโนมัติเมื่อ Push โค้ดขึ้น branch main
+  workflow_dispatch: # เพิ่มปุ่มกดรัน Build เองได้ที่หน้าเว็บ GitHub Actions
+
+jobs:
+  build:
+    runs-on: windows-latest # ใช้เครื่อง Windows Server ของ GitHub ในการคอมไพล์
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restore NuGet Packages
+      # คำสั่งโหลด Library ที่จำเป็นทั้งหมดมาลงเครื่อง Build
+      run: nuget restore "AIMBOT AI SAFE.sln"
+
+    - name: Build Solution (Release Mode)
+      # สั่ง Build ผ่านไฟล์ .sln ตามคอนฟิกที่คุณส่งมา
+      run: |
+        msbuild "AIMBOT AI SAFE.sln" /p:Configuration=Release /p:Platform="Any CPU" /p:OutputPath=../build_output/
+
+    - name: Upload Compiled File (Artifact)
+      uses: actions/upload-artifact@v4
+      with:
+        name: AIMBOT-FINAL-BUILD
+        # ระบุ Path ไปที่โฟลเดอร์ที่เก็บไฟล์ .exe ที่ Build เสร็จแล้ว
+        path: build_output/
