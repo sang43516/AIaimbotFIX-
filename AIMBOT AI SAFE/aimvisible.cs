@@ -124,7 +124,7 @@ internal static class AimbotVisibleScan
                 foreach (long baseAddr in baseAddresses)
                 {
                     long headAddr = baseAddr + HEAD_OFFSET;
-                    long chestAddr = baseAddr - CHEST_OFFSET;
+                    long chestAddr = baseAddr + CHEST_OFFSET;
 
                     byte[] headBytes = mem.ReadBytes(headAddr, 4);
                     byte[] chestBytes = mem.ReadBytes(chestAddr, 4);
