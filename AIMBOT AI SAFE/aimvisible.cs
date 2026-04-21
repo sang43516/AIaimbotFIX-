@@ -14,9 +14,9 @@ internal static class AimbotVisibleScan
     private static bool isRunning = false;
     // ================= CONFIG =================
     private const string PROCESS = "HD-Player";
-    private const string AOB_PATTERN = "FF FF FF FF 00 00 00 00 00 00 00 00 FF FF FF FF ?? ?? ?? ?? 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 01 01 01 01";
-    private const long HEAD_OFFSET = 0x2EC;
-    private const long CHEST_OFFSET = 0x2E8;
+    private const string AOB_PATTERN = "FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 00 00 A5 43";
+    private const long HEAD_OFFSET = 0xB8;
+    private const long CHEST_OFFSET = 0xB4;
 
     private static List<long> baseAddresses = new List<long>();
     private static Dictionary<long, int> patchedMemory = new Dictionary<long, int>();
